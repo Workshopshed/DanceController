@@ -57,8 +57,22 @@ void leftButton() {
     if ((buttonState != previousButtonState)
         // and it's currently pressed:
         && (buttonState == HIGH)) {
-            // TODO: Check what keys are useful in StepMania
-            Keyboard.print("You pressed the left button ");
+            // Enter to exit screens
+            Keyboard.print(KEY_ESC);
+    }
+    // save the current button state for comparison next time:
+    previousButtonState = buttonState;
+}
+
+void rightButton() {
+  static int previousButtonState=LOW;
+  int buttonState = CircuitPlayground.rightButton();
+    // if the button state has changed
+    if ((buttonState != previousButtonState)
+        // and it's currently pressed:
+        && (buttonState == HIGH)) {
+            // Enter to select actions in the game
+            Keyboard.print(KEY_RETURN);
     }
     // save the current button state for comparison next time:
     previousButtonState = buttonState;
@@ -75,6 +89,7 @@ void loop() {
     capSensor(1,KEY_DOWN_ARROW);
   
     leftButton();
+    rightButton();
 
     cycleLights();
   }
